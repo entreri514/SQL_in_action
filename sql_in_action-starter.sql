@@ -45,21 +45,21 @@ select  min(price),max(price) from final_airbnb;
 -- HINT: Aggregates are more than just big rocks...
 
 -- EXPECTED OUTPUT: 165.3904
-
+select avg(availability_365) from final_airbnb;
 
 -- <<<<<<<<<<<<<<<<<<<<<< PROBLEM 6 >>>>>>>>>>>>>>>>>>>>>>>
 -- Find all listings that do NOT have a review
 -- HINT: There are a few ways to go about this. Remember that an empty cell is "no value", but not necessarily NULL
 
 -- EXPECTED OUTPUT: 6 rows
-
+select * from final_airbnb where number_of_reviews=0;
 
 -- <<<<<<<<<<<<<<<<<<<<<< PROBLEM 7 >>>>>>>>>>>>>>>>>>>>>>>
 -- Find the id of the listing with a room_type of "Private room" that has the most reviews 
 -- HINT: Sorting is your friend!
 
 -- EXPECTED OUTPUT: 58059
-
+select id from final_airbnb where room_type="Private room" order by reviews_per_month desc limit 1;
 
 -- <<<<<<<<<<<<<<<<<<<<<< PROBLEM 8 >>>>>>>>>>>>>>>>>>>>>>>
 -- Find the most popular neighbourhood for listings 
@@ -68,11 +68,11 @@ select  min(price),max(price) from final_airbnb;
 
 -- EXPECTED OUTPUT: Williamsburg
 -- INVESTIGATE: Should Williamsburg be crowned the most popular neighbourhood?
-
+-- select count(neighbourhood) from final_airbnb group by neighborhood desc limit 1;
 -- <<<<<<<<<<<<<<<<<<<<<< PROBLEM 9 >>>>>>>>>>>>>>>>>>>>>>>
 -- Query the data to discover which listing is the most popular using the reviews_per_month for all listings with a minimum_nights value of less than 7
 -- HINT: Sorting is still your friend! So are constraints.
-
+select id from final_airbnb where minimum_nights<7 order by reviews_per_month desc limit 1;
 -- EXPECTED OUTPUT: 58059
 
 
